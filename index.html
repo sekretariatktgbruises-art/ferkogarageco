@@ -2,133 +2,141 @@
 <html lang="cs">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ferkomotors Co.</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --purple:#4b1d78;
-      --yellow:#FDB927;
-      --black:#0B0B0B;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      font-family:'Poppins',sans-serif;
-      color:#fff;
-      background:url('bmw.jpg') no-repeat center center fixed;
-      background-size:cover;
-      height:100vh;
-      overflow:hidden;
+      --yellow: #FDB927;
+      --purple: #4b1d78;
+      --black: #0B0B0B;
     }
 
-    /* Jemně pohyblivé tmavé pozadí */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:linear-gradient(120deg, rgba(0,0,0,0.5), rgba(0,0,0,0.65), rgba(0,0,0,0.5));
-      background-size:200% 200%;
-      animation:moveBg 20s ease-in-out infinite alternate;
-      z-index:0;
-    }
-    @keyframes moveBg {
-      from { background-position: 0% 50%; }
-      to { background-position: 100% 50%; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .topbar{
-      background:var(--yellow);
-      color:var(--black);
-      font-size:15px;
-      padding:10px 80px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      box-shadow:0 2px 6px rgba(0,0,0,.15);
-      position:relative;
-      z-index:10;
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: url('uvod.png') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
-    .topbar a{color:var(--black);font-weight:600;margin-left:14px;display:inline-flex;align-items:center;gap:6px;}
 
-    /* HEADER BEZ LOGA, CENTROVANÁ NAVIGACE */
-    header{
-      background:var(--purple);
-      padding:20px 0;
-      display:flex;
-      justify-content:center;
-      color:#fff;
-      box-shadow:0 2px 10px rgba(0,0,0,.2);
-      position:relative;
-      z-index:10;
+    /* Barevný přeliv */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(75,29,120,0.45), transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(253,185,39,0.4), transparent 70%),
+                  radial-gradient(circle at 50% 80%, rgba(11,11,11,0.6), transparent 80%);
+      background-size: 200% 200%;
+      mix-blend-mode: overlay;
+      animation: crazyGradient 25s ease-in-out infinite;
+      z-index: 0;
     }
-    nav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:25px;
-      flex-wrap:wrap;
+
+    @keyframes crazyGradient {
+      0% { background-position: 0% 0%, 100% 0%, 50% 100%; }
+      25% { background-position: 100% 100%, 0% 50%, 80% 0%; }
+      50% { background-position: 50% 50%, 80% 80%, 0% 20%; }
+      75% { background-position: 0% 100%, 50% 0%, 100% 50%; }
+      100% { background-position: 100% 0%, 0% 100%, 50% 50%; }
     }
-    nav a{
+
+    /* Navigace */
+    header {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      background: rgba(0,0,0,0.45);
+      padding: 10px 25px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    nav a {
       font-family: 'Russo One', sans-serif;
       text-transform: uppercase;
-      font-size:18px;
-      color:#fff;
-      padding:10px 18px;
-      border-radius:8px;
-      transition:.3s;
-      letter-spacing:1px;
-    }
-    nav a:hover{background:rgba(255,255,255,0.15);}
-    nav a.active{background:var(--yellow);color:var(--black);}
-
-    main{
-      position:relative;
-      z-index:5;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      height:calc(100vh - 160px);
-      text-align:center;
-      padding:0 20px;
+      font-size: 18px;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 0;
+      transition: .3s;
+      letter-spacing: 1px;
+      text-decoration: none;
     }
 
-    /* Logo perfektně viditelné uvnitř rámečku */
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    nav a.active {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    /* Hlavní sekce */
+    main {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* LOGO */
     .text-box {
-      border: 4px solid rgba(75,29,120,0.7);
-      border-radius: 14px;
-      background: rgba(0, 0, 0, 0.45);
-      box-shadow: 0 0 60px rgba(75,29,120,0.45);
-      display: inline-flex;
-      justify-content:center;
-      align-items:center;
-      width: 420px;
-      height: 180px;
-      overflow: hidden;
-      animation: pulseGlow 5s ease-in-out infinite;
+      position: relative;
+      background: none;
+      border: none;
+      box-shadow: none;
+      width: auto;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 0 40px rgba(75,29,120,0.35),
-                    0 0 80px rgba(75,29,120,0.25);
-        border-color: rgba(75,29,120,0.6);
-      }
-      50% {
-        box-shadow: 0 0 80px rgba(75,29,120,0.75),
-                    0 0 120px rgba(75,29,120,0.55);
-        border-color: rgba(75,29,120,0.9);
-      }
+    /* Tmavší ztmavení pod logem */
+    .text-box::before {
+      content: "";
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 90%);
+      z-index: -1;
+      filter: blur(70px);
     }
 
     .text-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* ZAJISTÍ CELÉ VIDITELNÉ LOGO */
-      display:block;
+      width: 600px;
+      height: auto;
+      object-fit: contain;
+      display: block;
       animation: fadeUp 1.5s ease forwards;
     }
 
@@ -137,76 +145,116 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    a.btn{
-      background:var(--yellow);
-      color:var(--black);
-      text-decoration:none;
-      padding:14px 30px;
-      border-radius:50px;
-      font-weight:600;
-      font-size:18px;
-      transition:0.3s;
-      box-shadow:0 4px 10px rgba(0,0,0,0.3);
-      position:relative;
-      overflow:hidden;
-      margin-top:50px;
+    /* TLAČÍTKO - sjednoceno se stylem menu */
+    a.btn {
+      background: var(--yellow);
+      color: var(--black);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 0; /* odstraněné zakulacení */
+      font-family: 'Russo One', sans-serif;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin-top: 50px;
       animation: fadeUp 1s ease forwards;
       animation-delay: 0.8s;
+      position: relative;
+      overflow: hidden;
     }
 
-    a.btn::before {
-      content: "";
+    a.btn:hover {
+      background: #fff;
+      color: var(--purple);
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: rgba(0,0,0,0.7);
+      color: #ccc;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
       position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.4);
-      transform: skewX(-25deg);
-      transition: left 0.5s ease;
-    }
-    a.btn:hover::before {
-      left: 125%;
+      bottom: 0;
+      width: 100%;
+      z-index: 10;
     }
 
-    a.btn:hover{
-      background:#fff;
-      color:var(--purple);
-      transform:scale(1.05);
+    /* Mobilní menu toggle */
+    .menu-toggle {
+      display: none;
     }
 
-    footer{
-      background:#111;
-      color:#aaa;
-      text-align:center;
-      padding:15px;
-      font-size:14px;
-      position:absolute;
-      bottom:0;
-      width:100%;
-      transition:background 0.6s ease, color 0.6s ease, box-shadow 0.6s ease;
+    .menu-btn {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      z-index: 30;
     }
 
-    footer:hover {
-      background:var(--purple);
-      color:#fff;
-      box-shadow:0 -2px 15px rgba(75,29,120,0.6);
-    }
+    /* RESPONSIVITA */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
 
-    @media(max-width:768px){
-      .text-box {width: 300px; height: 130px;}
-      nav a {font-size: 16px;}
+      nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        background: rgba(0,0,0,0.85);
+        border-radius: 10px;
+        position: absolute;
+        top: 80px;
+        right: 20px;
+      }
+
+      .menu-toggle:checked ~ header nav {
+        display: flex;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      .text-box img {
+        width: 100px;
+      }
+
+      .text-box::before {
+        width: 250px;
+        height: 250px;
+        filter: blur(30px);
+      }
+
+      a.btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        margin-top: 30px;
+      }
+
+      footer {
+        font-size: 12px;
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div><i class="fa-regular fa-clock"></i> Otevřeno Po–Pá 8:00–16:00</div>
-    <div>
-      <a href="mailto:ferkomotorsco@seznam.cz"><i class="fa-regular fa-envelope"></i> ferkomotorsco@seznam.cz</a>
-      <a href="tel:+420601366941"><i class="fa-solid fa-phone"></i> +420 601 366 941</a>
-    </div>
-  </div>
+
+  <!-- Checkbox toggle pro mobilní menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="menu-btn"><i class="fa-solid fa-bars"></i></label>
 
   <header>
     <nav>
@@ -226,9 +274,5 @@
     </div>
     <a href="objednat.html" class="btn">Objednat se</a>
   </main>
-
-  <footer>
-    © 2025 Ferkomotors Co. – Vítkov, Pivovarská 493/493
-  </footer>
 </body>
 </html>
