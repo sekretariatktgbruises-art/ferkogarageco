@@ -2,189 +2,311 @@
 <html lang="cs">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Novinky | Ferkomotors Co.</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --purple:#4b1d78;
-      --yellow:#FDB927;
-      --black:#0B0B0B;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      font-family:'Poppins',sans-serif;
-      color:#222;
-      background:#fff url('kolo.jpg') no-repeat center center fixed;
-      background-size:cover;
-      position:relative;
-      overflow-x:hidden;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:rgba(255,255,255,0.85);
-      z-index:0;
+      --yellow: #FDB927;
+      --purple: #4b1d78;
+      --black: #0B0B0B;
     }
 
-    .topbar{
-      background:var(--yellow);
-      color:var(--black);
-      font-size:15px;
-      padding:10px 80px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      box-shadow:0 2px 6px rgba(0,0,0,.15);
-      position:relative;
-      z-index:10;
-    }
-    .topbar a{color:var(--black);font-weight:600;margin-left:14px;display:inline-flex;align-items:center;gap:6px;}
-
-    header{
-      background:var(--purple);
-      padding:20px 80px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      color:#fff;
-      box-shadow:0 2px 10px rgba(0,0,0,.2);
-      position:relative;
-      z-index:10;
-    }
-    header img{height:60px;cursor:pointer;}
-    nav{display:flex;align-items:center;gap:20px;}
-    nav a{
-      font-weight:600;font-size:18px;color:#fff;padding:10px 18px;border-radius:8px;transition:.3s;
-    }
-    nav a:hover{background:rgba(255,255,255,0.15);}
-    nav a.active{background:var(--yellow);color:var(--black);}
-
-    main{
-      position:relative;
-      z-index:5;
-      background:#fff;
-      max-width:1100px;
-      margin:80px auto 100px;
-      padding:80px;
-      border-radius:20px;
-      box-shadow:0 0 40px rgba(0,0,0,0.15);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    h1{
-      font-size:48px;
-      color:var(--purple);
-      margin-bottom:10px;
-      text-align:center;
-    }
-    p.subtext{
-      color:#555;
-      font-size:18px;
-      text-align:center;
-      max-width:700px;
-      margin:auto;
-      margin-bottom:50px;
-    }
-
-    .news-item{
-      margin-bottom:60px;
-      border-bottom:1px solid #ddd;
-      padding-bottom:40px;
-    }
-    .news-item:last-child{border-bottom:none;}
-    .news-item h2{
-      color:var(--purple);
-      font-size:28px;
-      margin-bottom:10px;
-    }
-    .news-item .date{
-      color:#777;
-      font-size:14px;
-      margin-bottom:15px;
-    }
-    .news-item p{
-      line-height:1.6;
-      font-size:16px;
-      color:#333;
-      margin-bottom:15px;
-    }
-    .news-item img{
-      max-width:100%;
-      border-radius:10px;
-      margin-bottom:20px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #111;
+      background: url('obrazek1.png') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      overflow: hidden; /* žádný scroll na PC */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    footer{
-      background:#111;
-      color:#aaa;
-      text-align:center;
-      padding:25px;
-      font-size:14px;
-      margin-top:40px;
-      position:relative;
-      z-index:10;
+    /* ===== MENU ===== */
+    header {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      z-index: 30;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      background: rgba(0,0,0,0.45);
+      padding: 10px 25px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    nav a {
+      font-family: 'Russo One', sans-serif;
+      text-transform: uppercase;
+      font-size: 18px;
+      color: #fff;
+      padding: 10px 18px;
+      transition: .3s;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    nav a.active {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    /* ===== HAMBURGER ===== */
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-btn {
+      display: none;
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      font-size: 28px;
+      color: var(--yellow);
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+      transform: scale(1.05);
+    }
+
+    /* ===== OBSAH ===== */
+    main {
+      position: relative;
+      z-index: 5;
+      max-width: 1100px;
+      margin-top: 180px;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-family: 'Russo One', sans-serif;
+      font-size: 42px;
+      color: var(--purple);
+      background: #fff;
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: 12px;
+      border: 3px solid var(--purple);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      margin-bottom: 40px;
+    }
+
+    p.subtext {
+      color: #444;
+      font-size: 18px;
+      background: #fff;
+      display: inline-block;
+      padding: 10px 25px;
+      border-radius: 10px;
+      margin-bottom: 50px;
+      border: 2px solid var(--purple);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .news-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      text-align: left;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+      border: 2px solid rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .news-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--yellow);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .news-item h2 {
+      color: var(--purple);
+      font-size: 22px;
+      margin-bottom: 8px;
+      font-family: 'Russo One', sans-serif;
+    }
+
+    .news-item .date {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .news-item img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .news-item p {
+      line-height: 1.6;
+      font-size: 15px;
+      color: #333;
+    }
+
+    footer {
+      display: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      body {
+        height: auto;
+        overflow: auto;
+        padding-bottom: 60px;
+      }
+
+      main {
+        margin-top: 140px;
+      }
+
+      h1 {
+        font-size: 32px;
+        padding: 12px 20px;
+        margin-bottom: 30px;
+      }
+
+      .news-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .menu-btn { display: block; }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        background: rgba(0,0,0,0.9);
+        border-radius: 10px;
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s ease;
+      }
+
+      .menu-toggle:checked ~ header nav {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      footer {
+        display: block;
+        background: rgba(0,0,0,0.85);
+        color: #ccc;
+        text-align: center;
+        padding: 10px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div><i class="fa-regular fa-clock"></i> Otevřeno Po–Pá 8:00–16:00</div>
-    <div>
-      <a href="mailto:ferkomotorsco@seznam.cz"><i class="fa-regular fa-envelope"></i> ferkomotorsco@seznam.cz</a>
-      <a href="tel:+420601366941"><i class="fa-solid fa-phone"></i> +420 601 366 941</a>
-    </div>
-  </div>
 
+  <!-- HAMBURGER TOGGLE -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="menu-btn"><i class="fa-solid fa-bars"></i></label>
+
+  <!-- MENU -->
   <header>
-  <a href="index.html"><img src="logo.png" alt="Ferkomotors Co."></a>
-  <nav>
-    <a href="index.html" class="{INDEX_ACTIVE}">Úvod</a>
-    <a href="sluzby.html" class="{SLUZBY_ACTIVE}">Služby</a>
-    <a href="cenik.html" class="{CENIK_ACTIVE}">Ceník</a>
-    <a href="novinky.html" class="{NOVINKY_ACTIVE}">Novinky</a>
-    <a href="blog.html" class="{BLOG_ACTIVE}">Blog</a>
-    <a href="kontakt.html" class="{KONTAKT_ACTIVE}">Kontakt</a>
-    <a href="objednat.html" class="{OBJEDNAT_ACTIVE}">Objednat se</a>
-  </nav>
-</header>
+    <nav>
+      <a href="index.html">Úvod</a>
+      <a href="sluzby.html">Služby</a>
+      <a href="cenik.html">Ceník</a>
+      <a href="novinky.html" class="active">Novinky</a>
+      <a href="blog.html">Blog</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="objednat.html">Objednat se</a>
+    </nav>
+  </header>
 
+  <!-- OBSAH -->
   <main>
     <h1>Novinky</h1>
-    <p class="subtext">Aktuální informace, akce a novinky z našeho autoservisu Ferkomotors Co.</p>
 
-    <div class="news-item">
-      <h2>🎉 Nový servisní zvedák pro větší vozy</h2>
-      <div class="date"><i class="fa-regular fa-calendar"></i> 15. října 2025</div>
-      <img src="zvedak.jpg" alt="Nový servisní zvedák">
-      <p>Rozšířili jsme naše vybavení o nový hydraulický zvedák, díky kterému nyní zvládneme servis i u větších dodávek a SUV. Těšíme se, že vám díky tomu nabídneme ještě rychlejší a bezpečnější služby.</p>
-    </div>
+    <div class="news-container">
 
-    <div class="news-item">
-      <h2>🚗 Připravte své auto na zimu – akce na přezutí!</h2>
-      <div class="date"><i class="fa-regular fa-calendar"></i> 1. října 2025</div>
-      <img src="pneuservis.jpg" alt="Zimní přezutí">
-      <p>Od 1. října do 15. listopadu nabízíme zvýhodněné ceny na přezutí a vyvážení pneumatik. Objednejte se online a vyhněte se frontám. Akce platí do vyčerpání kapacit.</p>
-    </div>
+      <div class="news-item">
+        <h2>🎉 Nový servisní zvedák pro větší vozy</h2>
+        <div class="date"><i class="fa-regular fa-calendar"></i> 15. října 2025</div>
+        <img src="zvedak.jpg" alt="Nový servisní zvedák">
+        <p>Rozšířili jsme naše vybavení o nový hydraulický zvedák, díky kterému zvládneme servis i u větších dodávek a SUV. Nabízíme rychlejší a bezpečnější služby.</p>
+      </div>
 
-    <div class="news-item">
-      <h2>🧼 Nově nabízíme dezinfekci interiéru ozonem</h2>
-      <div class="date"><i class="fa-regular fa-calendar"></i> 20. září 2025</div>
-      <img src="ozon.jpg" alt="Čištění klimatizace ozonem">
-      <p>Pro zdravější a svěžejší prostředí ve vašem voze nabízíme ozonové čištění interiéru. Zničí bakterie, viry i nepříjemné pachy z klimatizace. Ideální po létě nebo při koupi ojetého vozu.</p>
-    </div>
+      <div class="news-item">
+        <h2>🚗 Připravte své auto na zimu – akce na přezutí!</h2>
+        <div class="date"><i class="fa-regular fa-calendar"></i> 1. října 2025</div>
+        <img src="pneuservis.jpg" alt="Zimní přezutí">
+        <p>Od 1. října do 15. listopadu nabízíme zvýhodněné ceny na přezutí a vyvážení pneumatik. Objednejte se online a vyhněte se frontám.</p>
+      </div>
 
-    <div class="news-item">
-      <h2>🕐 Změna otevírací doby v listopadu</h2>
-      <div class="date"><i class="fa-regular fa-calendar"></i> 10. září 2025</div>
-      <p>Od 1. listopadu 2025 bude náš servis otevřen nově od <strong>7:30 do 16:30</strong>. Chceme vám tak vyjít vstříc při ranních a odpoledních termínech.</p>
+      <div class="news-item">
+        <h2>🧼 Nově nabízíme dezinfekci interiéru ozonem</h2>
+        <div class="date"><i class="fa-regular fa-calendar"></i> 20. září 2025</div>
+        <img src="ozon.jpg" alt="Čištění klimatizace ozonem">
+        <p>Pro zdravější prostředí ve vašem voze nabízíme ozonové čištění interiéru. Zničí bakterie, viry i pachy z klimatizace.</p>
+      </div>
+
+      <div class="news-item">
+        <h2>🕐 Změna otevírací doby v listopadu</h2>
+        <div class="date"><i class="fa-regular fa-calendar"></i> 10. září 2025</div>
+        <p>Od 1. listopadu 2025 bude servis otevřen nově od <strong>7:30 do 16:30</strong>. Vyjdeme vám vstříc při ranních a odpoledních termínech.</p>
+      </div>
+
     </div>
   </main>
 
-  <footer>
-    © 2025 Ferkomotors Co. – Vítkov, Pivovarská 493/493
-  </footer>
 </body>
 </html>
