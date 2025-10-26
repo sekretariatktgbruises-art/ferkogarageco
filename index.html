@@ -55,7 +55,7 @@
     /* Navigace */
     header {
       position: absolute;
-      top: 70px;
+      top: 40px;
       left: 0;
       width: 100%;
       display: flex;
@@ -121,37 +121,31 @@
       align-items: center;
     }
 
-    /* Tmavší ztmavení pod logem */
+    /* Ztmavení pod logem */
     .text-box::before {
       content: "";
       position: absolute;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 90%);
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 75%);
       z-index: -1;
       filter: blur(70px);
     }
 
     .text-box img {
-      width: 600px;
+      width: 500px;
       height: auto;
       object-fit: contain;
       display: block;
-      animation: fadeUp 1.5s ease forwards;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* TLAČÍTKO - sjednoceno se stylem menu */
+    /* TLAČÍTKO */
     a.btn {
       background: var(--yellow);
       color: var(--black);
       text-decoration: none;
       padding: 14px 24px;
-      border-radius: 0; /* odstraněné zakulacení */
+      border-radius: 0;
       font-family: 'Russo One', sans-serif;
       text-transform: uppercase;
       font-size: 18px;
@@ -159,8 +153,6 @@
       transition: 0.3s;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       margin-top: 50px;
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 0.8s;
       position: relative;
       overflow: hidden;
     }
@@ -194,9 +186,20 @@
       top: 30px;
       right: 30px;
       font-size: 28px;
-      color: #fff;
+      color: var(--yellow); /* žluté čáry */
+      background: #fff; /* bílý podklad */
+      padding: 8px 12px;
+      border-radius: 8px;
       cursor: pointer;
       z-index: 30;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+      transform: scale(1.05);
     }
 
     /* RESPONSIVITA */
@@ -211,15 +214,21 @@
         align-items: center;
         gap: 10px;
         padding: 15px;
-        background: rgba(0,0,0,0.85);
+        background: rgba(0,0,0,0.9);
         border-radius: 10px;
         position: absolute;
         top: 80px;
         right: 20px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s ease;
       }
 
+      /* Efekt rozbalení menu */
       .menu-toggle:checked ~ header nav {
         display: flex;
+        opacity: 1;
+        transform: translateY(0);
       }
 
       nav a {
@@ -228,13 +237,13 @@
       }
 
       .text-box img {
-        width: 250px;
+        width: 220px;
       }
 
       .text-box::before {
-        width: 250px;
-        height: 250px;
-        filter: blur(30px);
+        width: 350px;
+        height: 350px;
+        filter: blur(40px);
       }
 
       a.btn {
@@ -274,5 +283,10 @@
     </div>
     <a href="objednat.html" class="btn">Objednat se</a>
   </main>
+
+  <footer>
+    © 2025 Ferkomotors Co. – Vítkov, Pivovarská 493/493
+  </footer>
+
 </body>
 </html>
